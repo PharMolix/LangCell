@@ -27,21 +27,18 @@ pip install -r requirements.txt
 
 The model's checkpoint is divided into five modules: text_bert, cell_bert, text_proj, cell_proj, and ctm_head. Users can select and load the necessary modules according to the downstream task requirements. Among them, cell_bert is the standard Huggingface BertModel; text_bert is a multifunctional encoder provided in utils.py; cell_proj and text_proj are linear layers that map the model outputs corresponding to the [CLS] position in cells and text to a unified feature space; and ctm_head is a linear layer that maps the output of text_bert to matching scores when performing Cell-Text Matching. For specific loading methods, please refer to the usage in `LangCell-annotation-zeroshot/zero-shot.ipynb`.
 
-https://drive.google.com/drive/folders/1cuhVG9v0YoAnjW-t_WMpQQguajumCBTp?usp=sharing
+[Download checkpoint](https://drive.google.com/drive/folders/1cuhVG9v0YoAnjW-t_WMpQQguajumCBTp)
 
 # Usage 
  
-- **Data preprocess**
-
+- **Data preprocess**  
 Similar to the example in `data_preprocess/preprocess.py`, you can use `scanpy` to read any single-cell data and process it into a format accepted by the model. The processing method is similar to `Geneformer`. For more detailed instructions, please refer to [Geneformer's tokenizing scRNAseq data example](https://huggingface.co/ctheodoris/Geneformer/blob/main/examples/tokenizing_scRNAseq_data.ipynb).
 
 
-- **LangCell zero-shot cell type annotation**
-
+- **LangCell zero-shot cell type annotation**  
 We strongly recommend that users unfamiliar with LangCell start by experiencing this core task to quickly understand the features and usage of LangCell. We have prepared a [demo dataset](https://drive.google.com/drive/folders/1cuhVG9v0YoAnjW-t_WMpQQguajumCBTp?usp=sharing) for this task; you just need to download the dataset and run `LangCell-annotation-zeroshot/zero-shot.ipynb`.
 
-- **LangCell few-shot cell type annotation**
-
+- **LangCell few-shot cell type annotation**  
 LangCell's performance can be further enhanced by performing few-shot training on a very small amount of data. You can run the code using the following commands:
 ```
 cd LangCell-annotation-fewshot/
@@ -49,8 +46,7 @@ cd LangCell-annotation-fewshot/
 python fewshot.py --data_path [data_path] --model_path [model_path] --nshot [nshot] --device [device] 
 ```
 
-- **LangCell-CE cell type annotation**
-
+- **LangCell-CE cell type annotation**  
 Experiments have proven that fine-tuning using only LangCell's Cell Encoder (LangCell-CE) can also achieve excellent performance on downstream tasks. You can run fine-tuning and few-shot experiments with LangCell-CE using the following commands:
 ```
 cd LangCell-CE-annotation/
@@ -59,6 +55,9 @@ python finetune.py --data_path [data_path] --model_path [model_path] --device [d
 
 python fewshot.py --data_path [data_path] --model_path [model_path] --nshot [nshot] --device [device] 
 ```
+
+- **Textual descriptions of cell identities**  
+We have uploaded the OBO Foundry file "obo.json" [here](https://drive.google.com/drive/folders/1cuhVG9v0YoAnjW-t_WMpQQguajumCBTp), which contains textual descriptions of common cell identities. You can use these as examples to write textual descriptions for new cell types.
 
 - **We will update more experimental code for LangCell in the future.**
 
