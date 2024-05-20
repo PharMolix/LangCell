@@ -7,8 +7,11 @@ The single-cell pre-trained language models (PLMs) currently used for this task 
 To address this issue, we propose an innovative solution by constructing a unified representation of single-cell data and natural language during the pre-training phase, allowing the model to directly incorporate insights related to cell identity.
 More specifically, we introduce **LangCell**, the first **Lang**uage-**Cell** pre-training framework. 
 LangCell utilizes texts enriched with cell identity information to gain a profound comprehension of cross-modal knowledge.
-Results from experiments conducted on different benchmarks show that LangCell is the only single-cell PLM that can work effectively in zero-shot cell identity understanding scenarios, and also significantly outperforms existing models in few-shot and fine-tuning cell identity understanding scenarios.  
-More information can be found at [https://arxiv.org/abs/2405.06708](https://arxiv.org/abs/2405.06708)
+Results from experiments conducted on different benchmarks show that LangCell is the only single-cell PLM that can work effectively in zero-shot cell identity understanding scenarios, and also significantly outperforms existing models in few-shot and fine-tuning cell identity understanding scenarios.
+
+More information can be found at [https://arxiv.org/abs/2405.06708](https://arxiv.org/abs/2405.06708).
+
+LangCell will soon be added to the OpenBioMed toolkit: [https://github.com/PharMolix/OpenBioMed](https://github.com/PharMolix/OpenBioMed).
 
 ![LangCell](assets/image.png)
 
