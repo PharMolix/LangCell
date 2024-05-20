@@ -950,8 +950,9 @@ class BertLMHeadModel(BertPreTrainedModel):
         return reordered_past
 
 class LangCellDataCollatorForCellClassification(DataCollatorForCellClassification):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, add_cls=True, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.add_cls = add_cls
 
     def _prepare_batch(self, features):
         if self.add_cls:
