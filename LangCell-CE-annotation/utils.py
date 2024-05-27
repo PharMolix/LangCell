@@ -3,6 +3,7 @@ import os
 import warnings
 from dataclasses import dataclass
 from typing import Optional, Tuple
+import numpy as np
 
 import torch
 from torch import Tensor, device, dtype, nn
@@ -38,7 +39,9 @@ from transformers.models.bert.configuration_bert import BertConfig
 from geneformer import DataCollatorForCellClassification
 from geneformer import TranscriptomeTokenizer
 from geneformer.tokenizer import tokenize_cell
-import numpy as np
+from geneformer.collator_for_classification import PrecollatorForGeneAndCellClassification
+from geneformer.pretrainer import token_dictionary
+token_dictionary['<cls>'] = len(token_dictionary)
 
 logger = logging.get_logger(__name__)
 
@@ -949,10 +952,30 @@ class BertLMHeadModel(BertPreTrainedModel):
             reordered_past += (tuple(past_state.index_select(0, beam_idx) for past_state in layer_past),)
         return reordered_past
 
+class LangCellPrecollatorForGeneAndCellClassification(PrecollatorForGeneAndCellClassification):
+    cls_token = "<cls>"
+    cls_token_id = token_dictionary.get("<cls>")
+    all_special_ids = [
+        token_dictionary.get('<cls>'),
+        token_dictionary.get("<mask>"),
+        token_dictionary.get("<pad>"),
+    ]
+    token_dictionary = token_dictionary
+
+    def _convert_token_to_id_with_added_voc(self, token):
+        if token is None:
+            return None
+
+        return self.token_dictionary.get(token)
+
+    def __len__(self):
+        return len(self.token_dictionary)
+    
 class LangCellDataCollatorForCellClassification(DataCollatorForCellClassification):
     def __init__(self, add_cls=True, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.add_cls = add_cls
+        self.tokenizer = LangCellPrecollatorForGeneAndCellClassification()
 
     def _prepare_batch(self, features):
         if self.add_cls:
