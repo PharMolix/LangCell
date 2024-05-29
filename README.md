@@ -63,6 +63,7 @@ We have uploaded the OBO Foundry file "obo.json" [here](https://drive.google.com
 
 
 # Citation
+If you find LangCell helpful to your research, please consider giving this repository a 🌟star and 📎citing the following article. Thank you for your support!
 ```
 @misc{zhao2024langcell,
       title={LangCell: Language-Cell Pre-training for Cell Identity Understanding}, 
