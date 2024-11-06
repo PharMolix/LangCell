@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: geneformer
+Version: 0.0.1
+Summary: Geneformer is a transformer model pretrained                  on a large-scale corpus of ~30 million single                  cell transcriptomes to enable context-aware                  predictions in settings with limited data in                  network biology.
+Author: Christina Theodoris
+Author-email: christina.theodoris@gladstone.ucsf.edu
