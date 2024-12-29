@@ -15,6 +15,8 @@ LangCell will soon be added to the OpenBioMed toolkit: [https://github.com/PharM
 
 ![LangCell](assets/image.png)
 
+# News
+- [2024/12/30] Released pre-training dataset [**scLibrary**](https://huggingface.co/datasets/Toycat/scLibrary/tree/main) 
 
 # Install
 
@@ -28,6 +30,12 @@ pip install -r requirements.txt
 The model's checkpoint is divided into five modules: text_bert, cell_bert, text_proj, cell_proj, and ctm_head. Users can select and load the necessary modules according to the downstream task requirements. Among them, cell_bert is the standard Huggingface BertModel; text_bert is a multifunctional encoder provided in utils.py; cell_proj and text_proj are linear layers that map the model outputs corresponding to the [CLS] position in cells and text to a unified feature space; and ctm_head is a linear layer that maps the output of text_bert to matching scores when performing Cell-Text Matching. For specific loading methods, please refer to the usage in `LangCell-annotation-zeroshot/zero-shot.ipynb`.
 
 [Download checkpoint](https://drive.google.com/drive/folders/1cuhVG9v0YoAnjW-t_WMpQQguajumCBTp)
+
+# Pre-training Dataset
+
+We constructed a cell-text dataset, **scLibrary**, containing 27.5 million scRNA-seq entries along with their descriptions. Specifically, we obtained raw scRNA-seq data and corresponding metadata from CELLxGENE. We selected eight critical aspects of cell identity that could contain essential insights, including cell type, developmental stage and disease information, to obtain as comprehensive descriptions as possible from the Open Biological and Biomedical Ontology Foundry (OBO Foundry).
+
+[Download scLibrary](https://huggingface.co/datasets/Toycat/scLibrary/tree/main)
 
 # Usage 
  
